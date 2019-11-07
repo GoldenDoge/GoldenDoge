@@ -41,7 +41,7 @@ To go futher you have to have a number of packages and utilities. You need at le
     $GoldenDoge> mv boost_1_67_0 boost
     $GoldenDoge> cd boost
     $GoldenDoge/boost> ./bootstrap.sh
-    $GoldenDoge/boost> ./b2 link=static -j 8 --build-dir=build64 --stagedir=stage
+    $GoldenDoge/boost> ./b2 link=static -j 2 --build-dir=build64 --stagedir=stage
     cd ..
     ```
 * OpenSSL (1.1.1 or newer):
@@ -58,3 +58,73 @@ To go futher you have to have a number of packages and utilities. You need at le
      ```
      $GoldenDoge> git clone https://github.com/GoldenDoge/GoldenDoge
      ```
+Create build directory inside `GoldenDoge`, go there and run CMake and Make:
+```
+$GoldenDoge> cd GoldenDoge
+$GoldenDoge/GoldenDoge> mkdir build
+$GoldenDoge/GoldenDoge> cd build
+$GoldenDoge/GoldenDoge/build> cmake ..
+$GoldenDoge/GoldenDoge/build> time make -j2 (2 is an example, it is the number of CPU threads)
+```
+     
+Check built binaries by running them from `../bin` folder
+```
+$GoldenDoge/GoldenDoge/build> ../bin/./GoldenDoged -v
+```
+
+### Building with specific options
+
+Download amalgamated [SQLite 3](https://www.sqlite.org/download.html) and unpack it into `GoldenDoge/sqlite` folder (source files are referenced via relative paths, so you do not need to separately build it).
+
+Below are the commands which remove OpenSSL support and switch from LMDB to SQLite by providing options to CMake:
+
+```
+$GoldenDoge/GoldenDoge> mkdir build
+$GoldenDoge/GoldenDoge cd build
+$GoldenDoge/GoldenDoge/build> cmake -DUSE_SSL=0 -DUSE_SQLITE=1 ..
+$GoldenDoge/GoldenDoge/build> time make -j2 (2 is an example, it is the number of CPU threads)
+```
+
+## Building on Windows
+
+You need Microsoft Visual Studio Community 2017. [Download](https://www.visualstudio.com/vs/) and install it selecting `C++`, `git`, `cmake integration` packages.
+Run `Visual Studio x64 command prompt` from start menu.
+
+Create directory `GoldenDoge` somewhere:
+```
+$C:\> mkdir GoldenDoge
+$C:\> cd GoldenDoge
+```
+
+Get [Boost](https://boost.org) and unpack it into a folder inside `GoldenDoge` and rename it from `boost_1_66_0` or similar to just `boost`.
+
+Build boost.
+```
+$> cd boost
+$C:\GoldenDoge\boost> bootstrap.bat
+$C:\GoldenDoge\boost> b2.exe address-model=64 link=static -j 2 --build-dir=build64 --stagedir=stage
+$C:\GoldenDoge\boost> b2.exe address-model=32 link=static -j 2 --build-dir=build32 --stagedir=stage32
+cd ..
+```
+
+* Clone GoldenDoge source code from github in that folder:
+```
+$C:\GoldenDoge> git clone https://github.com/GoldenDoge/GoldenDoge
+```
+
+Download [SQLite 3](https://www.sqlite.org/download.html) source code and unpack it into `GoldenDoge/sqlite` folder (source files are referenced via relative paths, so you do not need to separately build it).
+
+* Create build directory inside `GoldenDoge`, go there and run CMake and make it:
+```
+$C:\GoldenDoge> cd GoldenDoge
+$C:\GoldenDoge\GoldenDoge> copy ..\sqlite\shell.c src\shell.c /y
+$C:\GoldenDoge\GoldenDoge> copy ..\sqlite\sqlite3.c src\sqlite3.c /y
+$C:\GoldenDoge\GoldenDoge> copy ..\sqlite\sqlite3.h src\sqlite3.h /y
+$C:\GoldenDoge\GoldenDoge> copy ..\sqlite\sqlite3ext.h src\sqlite3ext.h /y
+$C:\GoldenDoge\GoldenDoge> mkdir build
+$C:\GoldenDoge\GoldenDoge> cd build
+$C:\GoldenDoge\GoldenDoge\build> cmake -DUSE_SSL=0 -DUSE_SQLITE=1 ..
+```
+
+Now you can open GoldenDoge.sln in build folder in VisualStudio 2017 and build it
+
