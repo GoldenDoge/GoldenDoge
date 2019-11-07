@@ -1,0 +1,2 @@
+# GoldenDoge
+such a currency
