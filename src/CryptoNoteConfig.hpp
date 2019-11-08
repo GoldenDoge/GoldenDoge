@@ -32,7 +32,7 @@ const uint64_t DIFFICULTY_LIMIT = 1000;// Min diff
 // MONEY_SUPPLY & EMISSION
 const uint64_t MONEY_SUPPLY          =  ((uint64_t)(-1));
 const unsigned EMISSION_SPEED_FACTOR = 21;
-const uint64_t FIXED_REWARD = static_cast<uint64_t>(0); //0.35 ZLS
+const uint64_t FIXED_REWARD = static_cast<uint64_t>(0);
 static_assert(EMISSION_SPEED_FACTOR <= 8 * sizeof(uint64_t), "Bad EMISSION_SPEED_FACTOR");
 
 //BLOCK SIZE
@@ -40,7 +40,7 @@ const size_t CRYPTONOTE_REWARD_BLOCKS_WINDOW = 100;
 const size_t CRYPTONOTE_BLOCK_GRANTED_FULL_REWARD_ZONE = 500000;
 const size_t CRYPTONOTE_BLOCK_GRANTED_FULL_REWARD_ZONE_V2 = 20000;
 const size_t CRYPTONOTE_BLOCK_GRANTED_FULL_REWARD_ZONE_V1 = 10000;
-const size_t CRYPTONOTE_BLOCK_GRANTED_FULL_REWARD_ZONE_V5 = 100000;  // size of block (bytes) after which reward for block calculated using block size
+const size_t CRYPTONOTE_BLOCK_GRANTED_FULL_REWARD_ZONE_V5 = 200000;  // size of block (bytes) after which reward for block calculated using block size
 
 constexpr uint32_t EXPECTED_NUMBER_OF_BLOCKS_PER_DAY(uint32_t difficulty_target) {
 	return 24 * 60 * 60 / difficulty_target;
