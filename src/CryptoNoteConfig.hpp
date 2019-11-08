@@ -144,7 +144,7 @@ const char GENESIS_COINBASE_TX_HEX[] =
         "010a01ff0001ffffffffffff01029b2e4c0281c0b02e7c53291a94d1d0cbff8883f8024f5142ee494ffbbd08807121017b1b0f3aa9a4a821b32c34291678ea36b8d1d601661a494c3a6cde36d7cdedc2";
 
 
-// ZELERIUSvxxxxxx1
+
 const UUID BYTECOIN_NETWORK{{0x47, 0x6f, 0x6c, 0x64, 0x65, 0x6e, 0x44, 0x6f, 0x67, 0x65}};
 
 }  // CryptoNote
