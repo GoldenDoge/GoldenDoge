@@ -402,7 +402,7 @@ void Node::advance_long_poll() {
 
 static const std::string beautiful_index_start =
     R"(<html><body><table valign="middle"><tr>
-        <td>Zelerius Node &bull; version)";
+        <td>GoldenDoge Node &bull; version)";
 static const std::string beautiful_index_finish = " </td></tr></table></body></html>";
 static const std::string robots_txt             = "User-agent: *\r\nDisallow: /";
 
