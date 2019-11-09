@@ -2,6 +2,7 @@
 ## About
 
 Welcome to the repository of GoldenDoge. 🐶 ... such a currency
+
 if you don't want to compile it you can download compiled binaries [here](https://github.com/GoldenDoge/GoldenDoge/releases)
 
 ## Contents
